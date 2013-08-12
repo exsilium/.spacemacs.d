@@ -20,25 +20,24 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-; Font size setting (a bit smaller than default
+; Font size setting (a bit smaller than default, change it even smaller or bigger if you want to change the default size of the font)
 (set-face-attribute 'default nil :height 100)
 ; Dirtree for fancy directory tree in emacs
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'dirtree)
-;(autoload 'dirtree "dirtree" "Add directory to tree view" t)
-; On mac We need to remap Meta to command so that we can enter "funny characters" like AT
+; On mac We need to remap Meta to command so that we can enter "funny characters" like @
 (setq mac-option-modifier nil)
 (setq mac-command-modifier 'meta)
 ; Let's get back some of the functionality
-; Copy
+; Copy cmd-c
 (global-set-key "\M-c" 'clipboard-kill-ring-save)
-; Paste
+; Paste cmd-v
 (global-set-key "\M-v" 'clipboard-yank)
-; Undo
+; Undo cmd-z
 (global-set-key "\M-z" 'undo)
-; Select All
+; Select All cmd-a
 (global-set-key "\M-a" 'mark-whole-buffer)
-; Let's also make the default window bigger
+; Let's also make the default window bigger (change the numbers if the window starts up too big)
 (setq default-frame-alist '((width . 285)(height . 100)))
 ; IMAP client? - Why not?
 (setq gnus-select-method '(nnimap "chamber"
@@ -55,7 +54,6 @@
 (dirtree "~/Projects/blacksakura-plugin" 0)
 (dirtree "~/Projects/ruby-xbee" 0)
 (delete-other-windows)
-;(split-window)
 (split-window-vertically (floor (* 0.90 (window-height))))
 (split-window-horizontally (floor (* 0.20 (window-width))))
 (switch-to-buffer "*dirtree*")

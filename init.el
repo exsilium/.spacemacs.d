@@ -184,7 +184,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -304,6 +304,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
         (add-hook 'kill-emacs-hook 'save-framegeometry))
     )
   ;; End of restore of frame size and location
+  ;; Set indent to 2 spaces
+  (my-setup-indent 2)
+  ;; End of indent setting
   )
 
 (defun dotspacemacs/user-config ()
@@ -313,6 +316,12 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (add-hook 'window-setup-hook #'start-my-day)
+  )
+
+(defun start-my-day ()
+  (spacemacs/default-pop-shell)
+  (neotree-find-project-root)
   )
 
 ;; Saving and restoring the startup window
@@ -356,6 +365,22 @@ you should place your code here."
       (load-file framegeometry-file)))
   )
 ;; End of saving and restoring the startup window
+
+;; Indent setting
+(defun my-setup-indent (n)
+  ;; java/c/c++
+  (setq c-basic-offset n)
+  ;; web development
+  (setq coffee-tab-width n) ; coffeescript
+  (setq javascript-indent-level n) ; javascript-mode
+  (setq js-indent-level n) ; js-mode
+  (setq js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  (setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset n) ; web-mode, css in html file
+  (setq web-mode-code-indent-offset n) ; web-mode, js code in html file
+  (setq css-indent-offset n) ; css-mode
+  )
+;; End of indent setting
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

@@ -53,6 +53,7 @@ values."
      ;; syntax-checking
      ;; version-control
      emoji
+     neotree
      (mu4e :variables
            mu4e-installation-path "/usr/local/Cellar/mu/1.0/share/emacs/site-lisp")
      )
@@ -307,7 +308,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Set indent to 2 spaces
   (my-setup-indent 2)
   ;; End of indent setting
-  )
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+)
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
